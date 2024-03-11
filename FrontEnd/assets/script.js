@@ -69,11 +69,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     }
 
-    let tokenApi
+    const token = localStorage.getItem('token');
 
     function getUser() {
-        const token = localStorage.getItem('token');
-        tokenApi = token
         const login = document.querySelector('.login');
         const logout = document.querySelector('.logout');
         const banner = document.querySelector('.banner');
@@ -116,7 +114,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const photos = await fetch('http://localhost:5678/api/works')
         const photosJson = await photos.json()
         displayModalImage(photosJson)
-        console.log(photosJson)
     }
 
     const modalgallery = document.querySelector(".modal-gallery")
@@ -148,14 +145,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     async function deleteImage(imageid) {
-        const token = localStorage.getItem('token');
-        tokenApi = token
-        console.log(imageid)
         await fetch("http://localhost:5678/api/works/"+ imageid, {
             method: 'DELETE',
             headers: {
                 Accept: "*/*",
-                Authorization: "Bearer " + tokenApi,
+                Authorization: "Bearer " + token,
             },   
              
         })
