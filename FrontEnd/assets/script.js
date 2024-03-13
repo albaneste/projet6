@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             trash.addEventListener("click", function () {
                 deleteImage(image.id)
-
+                
             })
 
 
@@ -145,15 +145,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     async function deleteImage(imageid) {
+        console.log(token)
         await fetch("http://localhost:5678/api/works/"+ imageid, {
             method: 'DELETE',
             headers: {
                 Accept: "*/*",
                 Authorization: "Bearer " + token,
             },   
-             
-        })
+
+        }) 
+
+
     }
+
+
 
 
 
